@@ -34,7 +34,7 @@ let compare = (a, b) => {
 //   try {
 //     // Fetch user details
 //     const userResponse = await fetch(
-//       `http://localhost:4000/api/v1/users/${userId}`,
+//       `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
 //       {
 //         headers: {
 //           "Authorization": `Bearer ${token}`,
@@ -107,7 +107,9 @@ function updateProgressValue() {
 // Function which fetches task by ID and returns when id is found
 async function fetchTaskById(id) {
   try {
-    const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`);
+    const response = await fetch(
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`
+    );
 
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -152,7 +154,7 @@ if (pagename === "login") {
 
       try {
         const response = await fetch(
-          "http://localhost:4000/api/v1/users/login",
+          "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/login",
           {
             method: "POST",
             headers: {
@@ -205,7 +207,7 @@ if (pagename === "logout") {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/users/logout",
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/logout",
         {
           method: "POST",
           headers: {
@@ -249,7 +251,7 @@ if (pagename == "dashboard") {
   try {
     // Fetch user details
     const userResponse = await fetch(
-      `http://localhost:4000/api/v1/users/${userId}`,
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
       {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -282,7 +284,7 @@ if (pagename == "dashboard") {
     try {
       // Fetch task count
       const taskCountResponse = await fetch(
-        "http://localhost:4000/api/v1/tasks/count",
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/count",
         {
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -298,7 +300,7 @@ if (pagename == "dashboard") {
 
       // Fetch user count
       const userCountResponse = await fetch(
-        "http://localhost:4000/api/v1/users/count",
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/count",
         {
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -326,7 +328,7 @@ if (pagename == "dashboard") {
 
 // ------------------------------------------------common functions for task and dev------------------------------------------------------------------------------
 async function fetchTasks() {
-  fetch("http://localhost:4000/api/v1/tasks/list")
+  fetch("https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/list")
     .then((response) => response.json())
     .then((tasks) => {
       // console.log(tasks);
@@ -357,9 +359,12 @@ async function delTask(id) {
     if (confirmation) {
       console.log(id);
       // Proceed to delete task
-      const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -461,7 +466,7 @@ if (pagename == "manage-tasks") {
   try {
     // Fetch user details
     const userResponse = await fetch(
-      `http://localhost:4000/api/v1/users/${userId}`,
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
       {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -545,13 +550,16 @@ if (pagename == "manage-tasks") {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/tasks/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTaskObj),
-      });
+      const response = await fetch(
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newTaskObj),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -577,18 +585,21 @@ if (pagename == "manage-tasks") {
     console.log(newProgress);
     try {
       // Prepare the data to be sent
-      const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`, {
-        method: "PUT", // Use PUT or PATCH depending on your API
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: newTaskName,
-          progress: newProgress,
-          deadline: newDeadline,
-          // Include assignedTo if necessary
-        }),
-      });
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`,
+        {
+          method: "PUT", // Use PUT or PATCH depending on your API
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: newTaskName,
+            progress: newProgress,
+            deadline: newDeadline,
+            // Include assignedTo if necessary
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -606,7 +617,9 @@ if (pagename == "manage-tasks") {
   async function fillTaskData(id) {
     try {
       // Fetch task data from the backend
-      const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`);
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`
+      );
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
       }
@@ -655,7 +668,7 @@ if (pagename == "manage-tasks") {
 
       // Fetch all users from the server
       const response = await fetch(
-        "http://localhost:4000/api/v1/users/developers",
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/developers",
         {
           method: "GET",
           headers: {
@@ -709,7 +722,7 @@ if (pagename == "manage-tasks") {
 
       // Send a PUT request to update the task with assigned developers
       const response = await fetch(
-        `http://localhost:4000/api/v1/tasks/${taskId}/assign`,
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${taskId}/assign`,
         {
           method: "PUT",
           headers: {
@@ -757,7 +770,7 @@ if (pagename == "manage-devs") {
   try {
     // Fetch user details
     const userResponse = await fetch(
-      `http://localhost:4000/api/v1/users/${userId}`,
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
       {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -796,7 +809,7 @@ if (pagename == "manage-devs") {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/v1/users/developers",
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/developers",
         {
           method: "GET",
           headers: {
@@ -879,13 +892,16 @@ if (pagename == "manage-devs") {
     };
 
     // Send a POST request to the backend to create a new developer
-    fetch("http://localhost:4000/api/v1/users/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newDevObj),
-    })
+    fetch(
+      "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newDevObj),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -918,11 +934,14 @@ if (pagename == "manage-devs") {
       }
 
       // Fetch the developer details by id to get the name
-      const response = await fetch(`http://localhost:4000/api/v1/users/${id}`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${id}`,
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -937,7 +956,7 @@ if (pagename == "manage-devs") {
       if (confirmation) {
         // Send DELETE request to the backend with Authorization header
         const deleteResponse = await fetch(
-          `http://localhost:4000/api/v1/users/${id}`,
+          `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -1000,7 +1019,7 @@ if (pagename === "developer-dashboard") {
   try {
     // Fetch user details
     const userResponse = await fetch(
-      `http://localhost:4000/api/v1/users/${userId}`,
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
       {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -1019,7 +1038,7 @@ if (pagename === "developer-dashboard") {
 
     // Fetch all tasks
     const tasksResponse = await fetch(
-      "http://localhost:4000/api/v1/tasks/list",
+      "https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/list",
       {
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -1111,7 +1130,7 @@ if (pagename === "manage-assigned-tasks") {
     try {
       // Fetch user details from backend
       const response = await fetch(
-        `http://localhost:4000/api/v1/users/${userId}`,
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
         {
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -1144,12 +1163,15 @@ if (pagename === "manage-assigned-tasks") {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/api/v1/tasks/list", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/list",
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -1220,14 +1242,17 @@ if (pagename === "manage-assigned-tasks") {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`, {
-        method: "PUT",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ progress: newProgress }),
-      });
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ progress: newProgress }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -1255,12 +1280,15 @@ if (pagename === "manage-assigned-tasks") {
     }
 
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/tasks/${id}`, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://taskmanagement-backend-ymxh.onrender.com/api/v1/tasks/${id}`,
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -1306,11 +1334,14 @@ if (pagename === "settings") {
     const userId = decodedToken._id;
 
     // Fetch user details from backend
-    fetch(`http://localhost:4000/api/v1/users/${userId}`, {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/${userId}`,
+      {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((user) => {
         userfnameEl.innerHTML = user.fname;
@@ -1346,14 +1377,17 @@ if (pagename === "settings") {
       }
 
       // Call backend to verify current password
-      fetch("http://localhost:4000/api/v1/users/verifyPassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ currentPassword: currPwdEl.value }),
-      })
+      fetch(
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/verifyPassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({ currentPassword: currPwdEl.value }),
+        }
+      )
         .then((response) => response.json())
         .then((result) => {
           if (result.success) {
@@ -1370,14 +1404,17 @@ if (pagename === "settings") {
     }
 
     function changePassword(userId, newPassword) {
-      fetch("http://localhost:4000/api/v1/users/changePassword", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ userId, newPassword }),
-      })
+      fetch(
+        "https://taskmanagement-backend-ymxh.onrender.com/api/v1/users/changePassword",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userId, newPassword }),
+        }
+      )
         .then((response) => response.json())
         .then((result) => {
           if (result.success) {
